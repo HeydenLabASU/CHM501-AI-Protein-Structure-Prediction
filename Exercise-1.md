@@ -11,7 +11,7 @@ DeepMind, the Google division that developed AlphaFold, has run the prediction s
 These are often available on [Uniprot](https://www.uniprot.org/).
 For instance, in addition to the many solved structures for insulin, the [Uniprot entry for insulin](https://www.uniprot.org/uniprotkb/P06213/entry) also has the AlphaFold structure available for download.
 
-<img src='files/screenshots/Sol-Desktop.jpg' width='1200'>
+<img src='files/screenshots/Sol-Desktop.png' width='1200'>
 
 DeepMind has already [predicted the structure for all proteins in humans and in multiple model organisms](https://www.deepmind.com/blog/alphafold-reveals-the-structure-of-the-protein-universe), and made these available to the public through the [https://alphafold.ebi.ac.uk/](AlphaFold Protein Structure Database).
 

@@ -76,17 +76,11 @@ click on "System" --> ">_Sol Shell Access" to start your terminal session:
 Now use the following set of commands to copy the files you need for this exercise:
 
 Enter the previously created "CHM501" directory in your home directory on SOL:
-
     cd CHM501
-
 Then copy the files you need for this exercise (don't forget the full stop "."):
-
     cp -r /scratch/mheyden1/CHM501/HW3 .
-
 Then enter the "HW3" directory:
-
     cd HW3
-
 
 
 Now, we have prepared some activities inside of a directory that we will be copying to our own storage space so that we have a clean workspace.

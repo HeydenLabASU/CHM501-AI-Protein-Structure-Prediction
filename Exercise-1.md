@@ -1,6 +1,6 @@
-# Day 1
+# Homework 4 (Task 8)
 
-What AlphaFold and similar tools do is to combine information from structural and sequence databases to predict protein structures.
+What AlphaFold and similar tools do is combine information from structural and sequence databases to predict protein structures.
 The main goals for this exercise are:
 - Get to know some of the protein structure prediction webservers
 - Learn how to use local high performance computing resources to predict more complicated protein structures
@@ -9,7 +9,7 @@ The main goals for this exercise are:
 
 DeepMind, the Google division that developed AlphaFold, has run the prediction software on many proteins already!
 These are often available on [Uniprot](https://www.uniprot.org/).
-For instance, in addition to the many solved structures for citrate synthase (enzyme that catayzes first reaction in Krebs cycle), the [Uniprot entry for citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) (see section structure) also has the AlphaFold structure available for download.
+For instance, in addition to the many solved structures for citrate synthase (enzyme that catalyzes first reaction in Krebs cycle), the [Uniprot entry for citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) (see section structure) also has the AlphaFold structure available for download.
 
 <img src='files/screenshots/uniprot_citrate-synthase_structure.png' width='1200'>
 
@@ -19,21 +19,21 @@ DeepMind has already [predicted the structure for all proteins in humans and in 
 
 If you really just want an answer for a protein structure *right away*, the easiest thing to do is to run AlphaFold or another protein structure prediction tool within a webserver.
 In this scenario, you will upload one or multiple protein sequences of interest to a website, which will use computing resources provided by someone else to predict the protein structure.
-A popular webserver for protein prediction is [ColabFold](https://github.com/sokrypton/ColabFold), which I personally has the slickest interface to do AlphaFold-like things, since it implements everything as a python notebook and is quite interactive.
-ColabFold's claim to fame is that it has a cheaper way of doing the initial sequence alignments and homology searches, which are described in the [companion paper to the webserver](https://doi.org/10.1038%2Fs41592-022-01488-1).
+A popular webserver for protein prediction is [ColabFold](https://github.com/sokrypton/ColabFold), which provides an easy-to-use interface to do AlphaFold-like things, since it implements everything as a Jupyter notebook and is quite interactive.
+ColabFold's claim to fame is that it has a cheaper way of doing the initial multiple sequence alignments (MSA) and homology searches, which are described in the [companion paper to the webserver](https://doi.org/10.1038%2Fs41592-022-01488-1).
 
 There are other webservers too.
 Protein structure prediction is a rapidly evolving field where multiple groups have their own ideas as to how they should take the ideas that AlphaFold pioneered and make them work better, or take less compute time.
-Some really big names are out there, including tech giants like Meta making their own tools to [predict protein structure](https://esmatlas.com/), which was published in [_Science_ in 2023](https://doi.org/10.1126/science.ade2574).
+The competitors include tech giants like Meta who developed a neural network called ESMFold to [predict protein structures](https://esmatlas.com/), which was published in [_Science_ in 2023](https://doi.org/10.1126/science.ade2574).
 Other, more classical approaches, such as I-TASSER, were the best options before machine learning and AI methods for protein structure prediction became widespread.
-These [webservers still exist](https://zhanggroup.org/I-TASSER/), and provide a window into the pre-AlphaFold universe of protein structure prediction.
+The corresponding [webserver still exists](https://zhanggroup.org/I-TASSER/) and provides a window into the pre-AlphaFold universe of protein structure prediction.
 
-Just so we get a sense of how these webservers work, lets try a few.
+Just so we get a sense of how these webservers work, we will try some of them here.
 Here is a short peptide sequence that contains some protein secondary structure, a helix and a few beta sheets.
 ```
 PIAQIHILEGRSDEQKETLIREVSEAISRSLDAPLTSVRVIITEMAKGHFGIGGELASK
 ```
-Lets copy that amino acid sequence and use that as an input for the following webservers:
+Lets copy that amino acid sequence and use it as an input for the following webservers:
 
 - [ESMFold](https://esmatlas.com/resources?action=fold) by Meta
 - [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb), which had an MSU postdoc working on the paper and implementation
@@ -46,35 +46,48 @@ Questions to consider as you are going through the webservers:
 1. How fast is the webserver at returning a result?
 2. In entering the sequence, is it obvious if the method can predict protein complexes?
 3. Do the output structures look similar to one another?
-4. How would you save the output structure to my own computer for further analysis?
+4. How would you save the output structure to your own computer for further analysis?
 
 Be warned, some of these webservers are relatively slow, so keep the tab open in the background as you work through the list.
-*Save the structure files to your own computer! We'll analyzing the output later!*
+*Save the structure files to your own computer! We'll analyze the output later!*
 
-## Running AlphaFold Yourself!
+## Running AlphaFold2 Yourself!
 
 Now lets pretend that you cannot use a webserver.
 Maybe your protein is too complicated to solve on the computing resources folks will give away for free, or you are working in a setting where the protein sequence is a trade secret that you cannot disclose to a webserver.
 What do you do then?
 The model for AlphaFold2 has been released to the public, and is available for download on [github](https://github.com/google-deepmind/alphafold).
 Take a minute to read through the instructions.
-We won't be following them, since on our supercomputing resources on campus, someone has already gone through the effort of installing AlphaFold for us.
+We won't be following them, since we already have a working version of AlphaFold2 available on SOL.
 But, if you wanted to install AlphaFold2 on your own computer, you can!
 
-Anyway, we will be using the supercomputing resources at ICER, which is the organization that runs the high performance computing cluster here on campus.
-They have [excellent tutorials](https://icer.msu.edu/education-events/desire2learn) through D2L for using the resources ICER provides.
-We will use their [OnDemand](https://ondemand.hpcc.msu.edu) facilities hosted at https://ondemand.hpcc.msu.edu, which will give you a window like this:
+To access SOL, we will again use the web interface provides by ASU's Research Computing core facility, which you can find here: [sol.asu.edu](sol.asu.edu).
 
-<img src='files/screenshots/icerondemand.png' width='1200'>
+To run AlphaFold2 on SOL, we will again use the text-based interface called terminal or shell, which you already used in Homework 2 to receive the files for the linear and non-linear regression exercise. 
 
-We are interested in the `Interactive Desktop` application, which will let us use graphical tools on the supercomputer directly.
+Once you see this screen:
 
-<img src='files/screenshots/interactivedesktopsetup.png' width='1200'>
+<img src='files/screenshots/00-shell.png' width='1200'>
 
-The default options are fine, and will get you access to a virtual network connection (VNC) to access a desktop running on the supercomputer.
-Once the session opens, we are going to be looking to open a terminal that we will be able to enter commands into.
+click on "System" --> ">_Sol Shell Access" to start your terminal session:
 
-<img src='files/screenshots/terminalopening.png' width='1200'>
+<img src='files/screenshots/01-SOL-shell-login.png' width='1200'>
+
+Now use the following set of commands to copy the files you need for this exercise:
+
+Enter the previously created "CHM501" directory in your home directory on SOL:
+
+    cd CHM501
+
+Then copy the files you need for this exercise (don't forget the full stop "."):
+
+    cp -r /scratch/mheyden1/CHM501/HW3 .
+
+Then enter the "HW3" directory:
+
+    cd HW3
+
+
 
 Now, we have prepared some activities inside of a directory that we will be copying to our own storage space so that we have a clean workspace.
 You can copy this box directly into your terminal window, which will execute the commands one at a time.
@@ -154,7 +167,7 @@ python3 ${ALPHAFOLD_DIR}/run_singularity.py \
 
 In any event, we can close the files and actually submit the AlphaFold calculations to the supercomputer.
 MSU's HPCC uses the SLURM job scheduler, which uses the command `sbatch` to submit a calculation to the computer.
-In the dawn of computing, you used to have to submit a calculation as a batch of punchcards, which was know colloquially as a "batch job" or simply a "job", so I'm switching to this terminology now.
+In the dawn of computing, you used to have to submit a calculation as a batch of punchcards, which was known colloquially as a "batch job" or simply a "job", so I'm switching to this terminology now.
 `squeue` can be used to see what jobs are in the job queue that the supercomputer is executing or are waiting to execute.
 Since most of the jobs are submitted by others, passing the `--me` flag will give you information on jobs that *you* currently have running.
 Below are the terminal commands.

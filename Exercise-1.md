@@ -1,4 +1,4 @@
-# Homework 4 (Task 8)
+# Homework 4
 
 What AlphaFold and similar tools do is combine information from structural and sequence databases to predict protein structures.
 The main goals for this exercise are:
@@ -43,13 +43,13 @@ Lets copy that amino acid sequence and use it as an input for the following webs
 
 Questions to consider as you are going through the webservers:
 
-1. How fast is the webserver at returning a result?
+1. How fast is the webserver at returning a result? (if one of them takes longer than 24 hours, you can ignore it)
 2. In entering the sequence, is it obvious if the method can predict protein complexes?
 3. Do the output structures look similar to one another?
 4. How would you save the output structure to your own computer for further analysis?
 
 Be warned, some of these webservers are relatively slow, so keep the tab open in the background as you work through the list.
-*Save the structure files to your own computer! We'll analyze the output later!*
+*Save the structure files to your own computer! You'll need to analyze them later!*
 
 ## Running AlphaFold2 Yourself!
 
@@ -69,125 +69,121 @@ Once you see this screen:
 
 <img src='files/screenshots/00-shell.png' width='640'>
 
-click on "System" --> ">_Sol Shell Access" to start your terminal session:
+click on `System` --> `>_Sol Shell Access to start your terminal session:
 
 <img src='files/screenshots/01-SOL-shell-login.png' width='640'>
 
 Now use the following set of commands to copy the files you need for this exercise:
 
-Enter the previously created "CHM501" directory in your home directory on SOL:
-
-    cd CHM501
-
-Then copy the files you need for this exercise (don't forget the full stop "."):
-
-    cp -r /scratch/mheyden1/CHM501/HW3 .
-
-Then enter the "HW3" directory:
-
-    cd HW3
-
-
-Now, we have prepared some activities inside of a directory that we will be copying to our own storage space so that we have a clean workspace.
-You can copy this box directly into your terminal window, which will execute the commands one at a time.
-This is written in the `bash` programming language, where any line that begins with a `#` is a comment, which I'm using here to explain what each command is doing.
-
+Enter the previously created `CHM501` directory in your home directory on SOL:
 ```bash
-#change to the scratch directory, which is a nice and fast high performance file system.
-#The scratch directory is specific to an individual user
-cd $SCRATCH
-#list the "present working directory", in case you need to navigate to it or refer to it in a script
-pwd
-#Notice that $SCRATCH is an example of a bash variable, which you can print out with the "echo" command
-echo $SCRATCH
-#Now we initiate the file transfer from the prepared files inside /mnt/research/BMB829_FS23_S305 to your working directory.
-rsync -vr /mnt/research/BMB829_FS23_S305/ $SCRATCH/.
-#"list" the files in your scratch directory.
-ls
-# There should now be a bunch of examples (Example1, Example2, and so on) that we will be exploring.
+cd CHM501
 ```
+Then copy the files you need for this exercise (don't forget the full stop `.`):
+```bash
+cp -r /scratch/mheyden1/CHM501/HW4 .
+```
+Then enter the `HW4` directory:
+```bash
+cd HW4
+```
+To see the contenct of the `HW4` directory, type:
+```bash
+ls
+```
+Each of three folders contains one usage examples for a full protein structure predictions with AlphaFold2. This includes multiple sequence alignment and homology template generation (largely disabled in Example-2) as well as running the full AlphaFold2 network with all of its features.
 
-To copy these commands into the remote terminal, look for a button on the left-hand side of the web-browser window.
-If you expand the menu, it will give you options, including a clipboard that you can paste text into (see below).
-Once the contents of the clipboard contain what you want to include in the box, you can use the right-mouse button to paste into the open terminal.
-You may also find it helpful to open these instructions in a webbrowser in the remote session, where you can copy and paste directly.
-
-<img src='files/screenshots/clipboard.png' width='1200'>
-
-The examples are there to serve as a guide for how you would run your own AlphaFold calculations on a supercomputer.
-- [Example 1](Example-1) is for the same single domain protein we have been using, which folds into secondary structure that is well established.
+These examples will provide you with a guide on how to run AlphaFold2 protein predictions, e.g., for your research projects.
+- [Example 1](Example-1) is for the same single domain protein we have been using for the webservers, which folds into secondary structure that is well established.
 - [Example 2](Example-2) will use AlphaFold to predict the structure for a protein that was recently solved, and is available from the [Protein DataBank](https://www.rcsb.org/structure/8IBQ). In this example, we will be changing the template date parameter.
 - [Example 3](Example-3) is for a protein complex, in this case the [Barnase-Barstar](https://www.rcsb.org/structure/1brs) complex, which is among the tightest binding protein complexes known despite its relatively small size.
 
-### Example 1
+### Example-1
 
-Starting from the `$SCRATCH` directory, we need to enter the `Example1` directory, and list the files in the directory with the following terminal commands:
-
+Enter the `Example1` directory and list the files in the directory with the following terminal commands:
 ```bash
 #Change directory
-cd Example1
-#List the files
+cd Example-1
+#List the files in this directory
 ls
 ```
-
 The output should list a `.fasta` file, and a `.sh` file.
-We can open both files with the `gedit` program, a simple graphical text editor, or those who are inclined to terminal text can use `cat` to print out the contents of both files.
-
+You can use the "cat" command to print the content of these files to your terminal:
 ```bash
-#Open the files for editing.
-#I'm using "*" as a "wildcard", so that I don't need to type out the full name.
-gedit *.fasta *.sh
-#cat *.fasta *.sh
+#I'm using "*" as a "wildcard", so that I don't need to type out the full file name.
+cat *.fasta
+```
+The `.fasta` file is just the protein sequence we are interested in solving the protein structure for, and have run through the webservers earlier.
+```bash
+cat *.sh
 ```
 
-The `.fasta` file is just the protein sequence we are interested in solving the protein structure for, and have run through multiple webservers.
-We can close that tab and focus on the contents of `run.sh`.
 `run.sh` is a shell script, which tells the computer what to do.
-The top lines that start with `#SBATCH` will be there to tell the job scheduler for the supercomputer how many and what kind of resources you want.
-For instance, in this script we are naming our job, promising the scheduler we will be done in 4 hours if we are given 1 of the faster GPUs, 8 CPUs, and 12GB of RAM.
-The next part of `run.sh` is making sure variables are set up and printing things to the log file so we can follow them later, and some preliminaries like making sure we are in the right directory.
+The top lines starting with `#SBATCH` tell the job scheduler for the supercomputer how many and what kind of resources you are requesting for this calculation.
+For instance, in this script we are naming our job, and request 4 hours of computing time with 1 of the faster GPUs, 8 CPUs, and 12GB of RAM.
+The next part of `run.sh` is defining required environment variables that identify the location of required databases (gene sequences for MSA and pdb structures for homology), etc.
 
-The line that actually runs AlphaFold is the line that starts with `python3`, which will run a [singularity](https://en.wikipedia.org/wiki/Singularity_(software)) container that has AlphaFold built into it.
-The advantage to these containers from a high-performance computing standpoint is that so long as the container is not altered, the software environment stays consistent to the program inside the container.
-This means that AlphaFold will always see the same version of system libraries that it depends on to work, making the work reproducible by others who might have different versions of a library.
-From our perspective, what we really care about are the options that we are passing to the singularity container, which also get passed into AlphaFold.
-Note that we can pass all the same flags to AlphaFold as are documented in the main [AlphaFold github page](https://github.com/google-deepmind/alphafold#running-alphafold).
+The line that actually runs AlphaFold is the line that starts with `apptainer`, which will run a so-called software container of AlphaFold2.
+The advantage of these containers is that they provide a consistent software environments for the programs in them including all libraries etc. that the containerized program depends on.
+This means that AlphaFol2 in this container will always see the same version of system libraries that it depends on to work making it independent from other files on SOL that may change over time (updates etc.).
+From our perspective, what we really care about are the options that we are passing to container, which get passed to AlphaFold2.
+Note that we can pass the same flags to AlphaFold as documented in the main [AlphaFold github page](https://github.com/google-deepmind/alphafold#running-alphafold).
 
 ```bash
-python3 ${ALPHAFOLD_DIR}/run_singularity.py \ 
-    --use_gpu \ #Use the GPU, which makes the neural network calculations faster
-    --output_dir=$output_dir \ #Here is where I want to put the result
-    --data_dir=${ALPHAFOLD_DATADIR} \ #Here is where the AlphaFold data like pdb sequences live
-    --fasta_paths=input.fasta \ #Here is our input fasta sequence
-    --max_template_date=2020-05-14 \ #When looking for PDB templates, this is the maximum date we will consider
-    --model_preset=monomer \ #We are predicting a monomeric protein
-    --db_preset=reduced_dbs #Use the reduced database
+apptainer run --nv \
+-B ${ALPHAFOLD_DATA_PATH}:/data \
+-B .:/etc \
+--pwd  /app/alphafold ${USER_ALPHAFOLD_DIR}/alphafold.sif \
+#identifies the location of the sequence file
+--fasta_paths=${workdir}/${FASTA_FILE}  \
+--use_gpu_relax \
+#identifies location of various databases (sequences and structures)
+--uniref90_database_path=/data/uniref90/uniref90.fasta  \
+--data_dir=/data \
+--mgnify_database_path=/data/mgnify/mgy_clusters.fa   \
+--bfd_database_path=/data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt \
+--uniclust30_database_path=/data/uniclust30/uniclust30_2018_08/uniclust30_2018_08 \
+--pdb70_database_path=/data/pdb70/pdb70  \
+--template_mmcif_dir=/data/pdb_mmcif/mmcif_files  \
+--obsolete_pdbs_path=/data/pdb_mmcif/obsolete.dat \
+#here we can restrict AlphaFold to use only structures known before a given date
+--max_template_date=2022-02-09   \
+#AlphaFold2 will write its output files here
+--output_dir=${workdir}/alphafold_output  \
+#we are trying to predict the structure of a monomer
+--model_preset=monomer \
+--db_preset=full_dbs \
+--use_gpu_relax=1
 ```
 
-In any event, we can close the files and actually submit the AlphaFold calculations to the supercomputer.
-MSU's HPCC uses the SLURM job scheduler, which uses the command `sbatch` to submit a calculation to the computer.
-In the dawn of computing, you used to have to submit a calculation as a batch of punchcards, which was known colloquially as a "batch job" or simply a "job", so I'm switching to this terminology now.
-`squeue` can be used to see what jobs are in the job queue that the supercomputer is executing or are waiting to execute.
-Since most of the jobs are submitted by others, passing the `--me` flag will give you information on jobs that *you* currently have running.
-Below are the terminal commands.
-
+The SLURM job scheduler controls when and on which part of SOL jobs will be executed. 
+We need to submit out script to SLURM in order to get `in line` for when resources become available, i.e., our job goes into a queue. 
+To submit your calculation, use the`sbatch` command:
 ```bash
-#Sbatch submits the job to the queue
 sbatch run.sh
-#Squeue checks if it is running.
+```
+In the dawn of computing, calculations had to be submitted as a batch of punchcards, which was known colloquially as a "batch job" or simply a "job". The terminology is still used today.
+The command `squeue` can be used to see what jobs are in the job queue on SOL, either with status `RUNNING` or `PENDING`. 
+Since SOL is used by many users from all over ASU, there are 1000's of jobs at any given time.
+To see only your jobs, use the command
+```bash
 squeue --me
 ```
+or
+```bash
+myjobs
+```
 
-If you need to cancel a job, like if you accidentally ran `sbatch` more than once, the correct syntax is to look up the job number using `squeue`, and pass the job number to `scancel`. For instance if the job number you wanted to cancel was 1234, the correct command is `scancel 1234`.
-We'll be doing a more thorough assessment of the output in the next class period, but for now, we can move to Example 2.
+If you need to cancel a job, e.g. if you accidentally ran `sbatch` more than once, the correct syntax is to look up the job number using `squeue`, and pass the job number to `scancel`. For instance if the job number you wanted to cancel was 1234, the correct command is `scancel 1234`.
+We'll be doing a more thorough assessment of the output later. For now, we move on to Example-2.
 
 ### Example 2
 
-First, we'd move into the `Example2` directory:
+First, we change into the `Example-2` directory:
 
 ```bash
 #Change directory
-cd $SCRATCH/Example2
+cd ~/CHM501/HW4/Example-2
 #List the files
 ls
 ```

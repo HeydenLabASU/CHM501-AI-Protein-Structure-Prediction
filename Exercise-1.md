@@ -67,11 +67,11 @@ To run AlphaFold2 on SOL, we will again use the text-based interface called term
 
 Once you see this screen:
 
-<img src='files/screenshots/00-shell.png' width='1200'>
+<img src='files/screenshots/00-shell.png' width='640'>
 
 click on "System" --> ">_Sol Shell Access" to start your terminal session:
 
-<img src='files/screenshots/01-SOL-shell-login.png' width='1200'>
+<img src='files/screenshots/01-SOL-shell-login.png' width='640'>
 
 Now use the following set of commands to copy the files you need for this exercise:
 

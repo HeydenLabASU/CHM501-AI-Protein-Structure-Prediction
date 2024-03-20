@@ -36,10 +36,10 @@ PIAQIHILEGRSDEQKETLIREVSEAISRSLDAPLTSVRVIITEMAKGHFGIGGELASK
 Lets copy that amino acid sequence and use it as an input for the following webservers:
 
 - [ESMFold](https://esmatlas.com/resources?action=fold) by Meta
-- [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb), which had an MSU postdoc working on the paper and implementation
-- [RoseTTAFold](https://robetta.bakerlab.org) from the Baker lab a U. Washington, which requires making an account, and has a LONG queue time, since it uses distributed computing.
-- [D-I-Tasser](https://zhanggroup.org/D-I-TASSER/) by the Zhang group at U. Michigan
-- [TopModel](https://cpclab.uni-duesseldorf.de/topsuite/topmodel.php), developed by the [Gohlke group at U. Dusseldorf](https://doi.org/10.1021/acs.jcim.0c01202)
+- [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb) from Seoul National University in South Korea
+- [RoseTTAFold](https://robetta.bakerlab.org) from the Baker lab a University of Washington Washington (requires making an account)
+- [D-I-Tasser](https://zhanggroup.org/D-I-TASSER/) by the Zhang group at the University of Michigan
+- [TopModel](https://cpclab.uni-duesseldorf.de/topsuite/topmodel.php), developed by the [Gohlke group at the University of Duesseldorf in Germany](https://doi.org/10.1021/acs.jcim.0c01202)
 
 Questions to consider as you are going through the webservers:
 
@@ -49,7 +49,7 @@ Questions to consider as you are going through the webservers:
 4. How would you save the output structure to your own computer for further analysis?
 
 Be warned, some of these webservers are relatively slow, so keep the tab open in the background as you work through the list.
-*Save the structure files to your own computer! You'll need to analyze them later!*
+*Save the structure files (pdb) to your own computer! You'll need to analyze them later!*
 
 ## Running AlphaFold2 Yourself! ##
 

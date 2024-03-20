@@ -1,4 +1,4 @@
-# Homework 4 Part 1#
+# Homework 4 Part 1 #
 
 What AlphaFold and similar tools do is combine information from structural and sequence databases to predict protein structures.
 The main goals for this exercise are:

@@ -9,11 +9,11 @@ The main goals for this exercise are:
 
 DeepMind, the Google division that developed AlphaFold, has run the prediction software on many proteins already!
 These are often available on [Uniprot](https://www.uniprot.org/).
-For instance, in addition to the many solved structures for citrate synthase (enzyme that catalyzes first reaction in Krebs cycle), the [Uniprot entry for citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) (see section structure) also has the AlphaFold structure available for download.
+For instance, in addition to the many experimentally solved structures for citrate synthase (enzyme that catalyzes first reaction in Krebs cycle), the [Uniprot entry for citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) (see section structure) also has the structure predicted by available for download.
 
 <img src='files/screenshots/uniprot_citrate-synthase_structure.png' width='1200'>
 
-DeepMind has already [predicted the structure for all proteins in humans and in multiple model organisms](https://www.deepmind.com/blog/alphafold-reveals-the-structure-of-the-protein-universe), and made these available to the public through the [https://alphafold.ebi.ac.uk/](AlphaFold Protein Structure Database).
+DeepMind has already [predicted the structure for almost all proteins in humans and in multiple model organisms](https://www.deepmind.com/blog/alphafold-reveals-the-structure-of-the-protein-universe), and made these available to the public through the [https://alphafold.ebi.ac.uk/](AlphaFold Protein Structure Database).
 
 ## Webservers!
 
@@ -61,7 +61,7 @@ Take a minute to read through the instructions.
 We won't be following them, since we already have a working version of AlphaFold2 available on SOL.
 But, if you wanted to install AlphaFold2 on your own computer, you can!
 
-To access SOL, we will again use the web interface provides by ASU's Research Computing core facility, which you can find here: [sol.asu.edu](sol.asu.edu).
+To access SOL, we will again use the web interface provided by ASU's Research Computing core facility, which you can find here: [sol.asu.edu](sol.asu.edu).
 
 To run AlphaFold2 on SOL, we will again use the text-based interface called terminal or shell, which you already used in Homework 2 to receive the files for the linear and non-linear regression exercise. 
 
@@ -91,7 +91,7 @@ To see the contenct of the `HW4` directory, type:
 ```bash
 ls
 ```
-Each of three folders contains one usage examples for a full protein structure predictions with AlphaFold2. This includes multiple sequence alignment and homology template generation (largely disabled in Example-2) as well as running the full AlphaFold2 network with all of its features.
+Each of three folders contains one usage example for a full protein structure prediction with AlphaFold2. This includes multiple sequence alignment and homology template generation (largely disabled in Example-2) as well as running the full AlphaFold2 network with all of its features.
 
 These examples will provide you with a guide on how to run AlphaFold2 protein predictions, e.g., for your research projects.
 - [Example 1](Example-1) is for the same single domain protein we have been using for the webservers, which folds into secondary structure that is well established.
@@ -100,7 +100,7 @@ These examples will provide you with a guide on how to run AlphaFold2 protein pr
 
 ### Example-1
 
-Enter the `Example1` directory and list the files in the directory with the following terminal commands:
+Enter the `Example-1` directory and list the files in the directory with the following terminal commands:
 ```bash
 #Change directory
 cd Example-1
@@ -114,21 +114,21 @@ You can use the "cat" command to print the content of these files to your termin
 cat *.fasta
 ```
 The `.fasta` file is just the protein sequence we are interested in solving the protein structure for, and have run through the webservers earlier.
+
 ```bash
 cat *.sh
 ```
-
 `run.sh` is a shell script, which tells the computer what to do.
-The top lines starting with `#SBATCH` tell the job scheduler for the supercomputer how many and what kind of resources you are requesting for this calculation.
+The top lines starting with `#SBATCH` tell the job scheduler for the supercomputer which resources you are requesting for this calculation.
 For instance, in this script we are naming our job, and request 4 hours of computing time with 1 of the faster GPUs, 8 CPUs, and 12GB of RAM.
 The next part of `run.sh` is defining required environment variables that identify the location of required databases (gene sequences for MSA and pdb structures for homology), etc.
 
 The line that actually runs AlphaFold is the line that starts with `apptainer`, which will run a so-called software container of AlphaFold2.
-The advantage of these containers is that they provide a consistent software environments for the programs in them including all libraries etc. that the containerized program depends on.
-This means that AlphaFol2 in this container will always see the same version of system libraries that it depends on to work making it independent from other files on SOL that may change over time (updates etc.).
-From our perspective, what we really care about are the options that we are passing to container, which get passed to AlphaFold2.
-Note that we can pass the same flags to AlphaFold as documented in the main [AlphaFold github page](https://github.com/google-deepmind/alphafold#running-alphafold).
+The advantage of these containers is that they provide a consistent software environment for the programs in them including all libraries etc. that the containerized program depends on.
+This means that AlphaFol2 in this container will always see the same version of system libraries that it depends on, making it independent from other files on SOL that may change over time (updates etc.).
+From our perspective, what we really care about are the options that we are passing to the container, which get then passed to AlphaFold2.
 
+I added a few comment lines below that explain what some of these options are.
 ```bash
 apptainer run --nv \
 -B ${ALPHAFOLD_DATA_PATH}:/data \
@@ -157,11 +157,12 @@ apptainer run --nv \
 ```
 
 The SLURM job scheduler controls when and on which part of SOL jobs will be executed. 
-We need to submit out script to SLURM in order to get `in line` for when resources become available, i.e., our job goes into a queue. 
+We need to submit our script to SLURM in order to get `in line` for when resources become available. In other words, our job goes into a queue. 
 To submit your calculation, use the`sbatch` command:
 ```bash
 sbatch run.sh
 ```
+
 In the dawn of computing, calculations had to be submitted as a batch of punchcards, which was known colloquially as a "batch job" or simply a "job". The terminology is still used today.
 The command `squeue` can be used to see what jobs are in the job queue on SOL, either with status `RUNNING` or `PENDING`. 
 Since SOL is used by many users from all over ASU, there are 1000's of jobs at any given time.
@@ -174,10 +175,13 @@ or
 myjobs
 ```
 
-If you need to cancel a job, e.g. if you accidentally ran `sbatch` more than once, the correct syntax is to look up the job number using `squeue`, and pass the job number to `scancel`. For instance if the job number you wanted to cancel was 1234, the correct command is `scancel 1234`.
+If you need to cancel a job, e.g. if you accidentally ran `sbatch` more than once, the correct syntax is to look up the job number using `squeue --me`, and pass the job number to `scancel`. For instance if the job number you wanted to cancel was 1234, the correct command is `scancel 1234`.
+
+Note that the name of the *.fasta input file will be used to determine the name of a directory generated by AlphaFold2 to store the output files. In this case, for the the 'peptide.fasta' file, the outputs will be stored in a directory called 'alphafold_ouput/peptide'
+
 We'll be doing a more thorough assessment of the output later. For now, we move on to Example-2.
 
-### Example 2
+### Example-2
 
 First, we change into the `Example-2` directory:
 

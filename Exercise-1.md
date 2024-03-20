@@ -1,4 +1,4 @@
-# Homework 4 #
+# Homework 4 Part 1#
 
 What AlphaFold and similar tools do is combine information from structural and sequence databases to predict protein structures.
 The main goals for this exercise are:
@@ -98,7 +98,7 @@ These examples will provide you with a guide on how to run AlphaFold2 protein pr
 - [Example 2](Example-2) will use AlphaFold to predict the structure for a protein that was recently solved, and is available from the [Protein DataBank](https://www.rcsb.org/structure/8IBQ). In this example, we will be changing the template date parameter.
 - [Example 3](Example-3) is for a protein complex, in this case the [Barnase-Barstar](https://www.rcsb.org/structure/1brs) complex, which is among the tightest binding protein complexes known despite its relatively small size.
 
-### Example-1 ###
+### Example 1 ###
 
 Enter the `Example-1` directory and list the files in the directory with the following terminal commands:
 ```bash
@@ -181,7 +181,7 @@ Note: the name of the `.fasta` input file will be used to determine the name of 
 
 We'll be doing a more thorough assessment of the output later. For now, we move on to Example-2.
 
-### Example-2 ###
+### Example 2 ###
 
 First, we change into the `Example-2` directory:
 
@@ -211,7 +211,7 @@ squeue --me
 
 Since the protein size is relatively small, this will take about the same amount of time as Example 1.
 
-### Example-3 ###
+### Example 3 ###
 
 The examples up to this point were all of proteins whose functional form was a single polypeptide chain.
 However, many proteins function as a complex or multimer, and, as discussed, AlphaFold2 has the capability of predicting the folded structures for complexes as well.

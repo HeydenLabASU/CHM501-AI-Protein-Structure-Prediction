@@ -6,13 +6,13 @@ Now we will examine how similar the structure predictions for the peptide struct
 
 Navigate to [sol.asu.edu](sol.asu.edu) in your browser, log in with your ASURITE ID, and then select the `Sol Desktop` under `Interactive Apps` as shown below.
 
-<img src='files/screenshots/00-Desktop.png' width='1200'>
+<img src='files/screenshots/00-Desktop.png' width='600'>
 
 On the next screen, you can select resources on one of the SOL nodes. The default settings are fine, but I recommend t adjust the time limit to ensure the session does not end after 1 hour. Your job will enter the "queue" but it should only take a short while until your session is available (status change from `queued` to `running`).  Once it is ready, click on `Launch Sol Desktop`.
 
 Next you will see a very simple standard desktop screen similar to a Windows or MacOS computer. This interface allows us to open programs as `windows` with a graphical user interface. However, we will start with a simple terminal, which you can open by clicking on the black'ish icon in the app list in center of the bottom of the screen.
 
-<img src='files/screenshots/06-SOL-Desktop-job-terminal.png' width='1200'>
+<img src='files/screenshots/06-SOL-Desktop-job-terminal.png' width='600'>
 
 
 

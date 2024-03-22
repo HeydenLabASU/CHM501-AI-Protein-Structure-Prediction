@@ -2,9 +2,24 @@
 
 At this point, you will have predicted the structure of a small peptide with multiple webservers as well as AlphaFold2. Further, you will have performed structure predictions with AlphaFold2 with and without template information for another small proteins as well as for a protein complex. 
 
-Now we will examine how similar the structure predictions for the peptide structure are. For this , we will use the program VMD (Visual Molecular Dynamics), which is already installed on SOL. However, this time we will need more than just a text-based interface.
+Now we will examine how similar the structure predictions for the peptide structure are. For this , we will use the program VMD (Visual Molecular Dynamics), which is already installed on SOL. This time we will need more than just a text-based interface, but the first step is to transfer the files with the webserver predictions to SOL.
 
-Navigate to [sol.asu.edu](sol.asu.edu) in your browser, log in with your ASURITE ID, and then select the `Sol Desktop` under `Interactive Apps` as shown below.
+First, create a folder/directory on your computer with the name `webserver-predictions`. Then copy the `.pdb` files with the predicted structures into that folder. For compatibility with the scripts you will use later, name the files as follows:
+
+- colabfold.pdb
+- DITASSER.pdb
+- ESMFold.pdb
+- topsuite.pdb
+
+I skipped RoseTTAFold here, because previous attempts indicated that the wait time for the RoseTTAFold prediction might be long to be practical for this exercise.
+
+Navigate to [sol.asu.edu](sol.asu.edu) in your browser and log in with your ASURITE ID. Then click on Files -> Home Directory as shown below. 
+
+<img src='files/screenshots/00-SOL-files.png' width='600'>
+
+You will see the content of your `$HOME` directory on SOL. Navigate to the CHM501/HW4 directory and click on the `Upload` button on the upper right of your window. Then drag and drop your previously created `webserver-predictions` folder into the upload field.
+
+Next, click on `Interactive Apps` and then select `Sol Desktop` as shown below.
 
 <img src='files/screenshots/00-Desktop.png' width='600'>
 

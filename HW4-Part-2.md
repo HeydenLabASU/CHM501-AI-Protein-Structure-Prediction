@@ -11,23 +11,58 @@ First, create a folder/directory on your computer with the name `webserver-predi
 - ESMFold.pdb
 - topsuite.pdb
 
-I skipped RoseTTAFold here, because previous attempts indicated that the wait time for the RoseTTAFold prediction might be long to be practical for this exercise.
+I skipped RoseTTAFold here, because previous attempts indicated that the wait time for the RoseTTAFold prediction might be long to be practical for this exercise. 
 
 Navigate to [sol.asu.edu](sol.asu.edu) in your browser and log in with your ASURITE ID. Then click on Files -> Home Directory as shown below. 
 
 <img src='files/screenshots/00-SOL-files.png' width='600'>
 
-You will see the content of your `$HOME` directory on SOL. Navigate to the CHM501/HW4 directory and click on the `Upload` button on the upper right of your window. Then drag and drop your previously created `webserver-predictions` folder into the upload field.
+You will see the content of your `$HOME` directory on SOL. Navigate to the CHM501/HW4 directory. The folder should already contain the folders `Example-1`, `Example-2`, `Example-3` and `vmd-scripts`. 
+Now click on the `Upload` button on the upper right of your window and drag and drop the `webserver-predictions` folder on your local computer into the upload field.
 
-Next, click on `Interactive Apps` and then select `Sol Desktop` as shown below.
+Next, click on `Interactive Apps` and select `Sol Desktop` as shown below.
 
 <img src='files/screenshots/00-Desktop.png' width='600'>
 
 On the next screen, you can select resources on one of the SOL nodes. The default settings are fine, but I recommend t adjust the time limit to ensure the session does not end after 1 hour. Your job will enter the "queue" but it should only take a short while until your session is available (status change from `queued` to `running`).  Once it is ready, click on `Launch Sol Desktop`.
 
-Next you will see a very simple standard desktop screen similar to a Windows or MacOS computer. This interface allows us to open programs as `windows` with a graphical user interface. However, we will start with a simple terminal, which you can open by clicking on the black'ish icon in the app list in center of the bottom of the screen.
+Next you will see a very simple standard desktop screen similar to a Windows or MacOS computer. This interface allows us to open programs as `windows` with a graphical user interface. However, we will start (again) with a simple terminal, which you can open by clicking on the black'ish icon in the app list in center of the bottom of the screen.
 
 <img src='files/screenshots/06-SOL-Desktop-job-terminal.png' width='600'>
+
+First, we need to load the VMD module using the following terminal command:
+```bash
+module load vmd-1.9.3-gcc-11.2.0
+```
+
+Now, we use the terminal to navigate to the `CHM501/HW4` folder. 
+```TCL
+mol new ../Example1/exampleoutput/relaxed_model_3_pred_0.pdb
+mol rename top AlphaFold
+mol new ../Example1WebserverOutput/ESMFold.pdb
+mol new ../Example1WebserverOutput/collabfold.pdb
+mol new ../Example1WebserverOutput/topsuite.pdb
+mol new ../Example1WebserverOutput/DITASSER.pdb
+mol top 0
+#This does alignment for all the structure
+set ref [atomselect top "name CA"]
+for { set i 0 } { $i < [molinfo num] } { incr i } {
+	set asel [atomselect $i "all"]
+	set sel [atomselect $i "name CA"]
+	$asel move [measure fit $sel $ref]
+	$asel delete
+	$sel delete
+}
+
+set colorlist [list 0 1 3 7 6]
+#This changes the representations so that you can tell which is which.
+for { set i 0 } { $i < [molinfo num] } { incr i } {
+	mol modcolor 0 $i ColorID [lindex $colorlist $i]
+	mol modstyle 0 $i NewCartoon 0.300000 10.000000 4.100000 0
+}
+menu main on
+display resetview
+```
 
 
 

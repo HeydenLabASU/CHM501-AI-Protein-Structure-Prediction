@@ -117,13 +117,14 @@ However, the actual differences in the atomic positions are similar.
 To measure how similar the structures are, click on the "RMSD" button. The first structure (the AlphaFold2 prediction) is used as the reference and the RMSD to itself is of course zero. 
 How large are the RMSD's for the other structures (VMD measures the RMSD in Angstrom)?
 
-*INSTRUCTIONS FOR HOMEWORK SUBMISSION (Part 1)*
+### *INSTRUCTIONS FOR HOMEWORK SUBMISSION (Part 1)* ###
 
 Create a document with a screenshot of the aligned structures and their RMSD's. Perform the alignment and subsequence RMSD calculation both for backbone and non-hydrogen atoms and compare the results. Answer the following questions:
 - Which RMSD (backbone or noh) is larger? 
 - Can you explain why?
 - Which of the webserver predictions is most similar to AlphaFold2?
 
+### ###
 
 Overall, we note that the RMSD's between the different predictions are not very large.
 A crystal structure with a sub-3 Angstrom resolution is pretty good and most of the differences are smaller than that.

@@ -117,14 +117,14 @@ However, the actual differences in the atomic positions are similar.
 To measure how similar the structures are, click on the "RMSD" button. The first structure (the AlphaFold2 prediction) is used as the reference and the RMSD to itself is of course zero. 
 How large are the RMSD's for the other structures (VMD measures the RMSD in Angstrom)?
 
-### *INSTRUCTIONS FOR HOMEWORK SUBMISSION (Part 1)* ###
+## *INSTRUCTIONS FOR HOMEWORK SUBMISSION (1/4)* ##
 
 Create a document with a screenshot of the aligned structures and their RMSD's. Perform the alignment and subsequence RMSD calculation both for backbone and non-hydrogen atoms and compare the results. Answer the following questions:
 - Which RMSD (backbone or noh) is larger? 
 - Can you explain why?
 - Which of the webserver predictions is most similar to AlphaFold2?
 
-### ###
+## ##
 
 Overall, we note that the RMSD's between the different predictions are not very large.
 A crystal structure with a sub-3 Angstrom resolution is pretty good and most of the differences are smaller than that.
@@ -211,7 +211,7 @@ But the details encoded into the text files can also be shown visually.
 The pLDDT scores in particular are encoded into the output `.pdb` files in the `beta` column, which is the column right after the coordinates and the `occupancy` column in the file.
 The key is that visualization programs like VMD can readily use this information to assign color to their renderings, providing instant feedback.
 
-In Example-2, we calculated the same structure with two different settings for the `max-template-date` parameter, which limits which PDB structures are used as potential templates.
+In Example-2, we calculated the same structure with two different settings for the `max_template_date` parameter, which limits which PDB structures are used as potential templates.
 The 2022 date in `run-full.sh` allows AlphaFold2 to use all PDB structures published before 2022 as a template for the structure of the [protein](https://www.rcsb.org/structure/8IBQ) that we aimed to predict (which was solved more recently)
 The 1970 date in `run-notemplates.sh` effectively means that AlphaFold2 is *only* allowed to rely on sequence alignment data and its neural network training to determine the structure.
 We can double-check this with `grep` command and search for a specific sentence in the log files.
@@ -244,18 +244,20 @@ This particular experimental structure has a few residues for which multiple con
 Further, we cannot use the default `noh` selection, and instead need to use `backbone` as the selection modifier.
 There are some missing heavy atoms in the experimental structure, so the number of atoms does not match between our AlphaFold models and the experimental structure.
 
-*INSTRUCTIONS FOR HOMEWORK SUBMISSION (Part 2)*
+## *INSTRUCTIONS FOR HOMEWORK SUBMISSION (2/4)* ##
 
 - Provide a snapshot of the superimposed predicted and experimental structures.
 - Determine the backbone RMSD (after alignment) between both predicted structures and the experimental structure and between the two predicted structures (3 RMSDs)
 - The experimental resolution (measure of uncertainty) of the experimental structure is 1.45 A. Are the predicted structures distinguishable from the experimental structure?
+
+## ##
 
 The question is now how confident AlphaFold2 is in its prediction in each case. 
 To visualize this, we open the `Graphical Representations` window (under `Graphics->Representations`) and color a selected structure by `beta`.
 To make this clearer, you can hide molecules you aren't interested in by double clicking on the black "D" in the VMD main window (D=display in this case).
 Once it turns red, you will hide that molecule from view until you double click the D again to bring it back.
 
-<img src='files/screenshots/openinggraphicalrepresentations.png' width='1200'>
+<img src='files/screenshots/graphical-rep.png' width='300'>
 
 Within the graphical representations window, we can select the molecule we are editing the selection for on the top of the window from the drop-down box.
 Then change the coloring method to from `ColorID` to `beta`, which uses the maximum and minimum beta values encoded in the structure to color the protein, i.e., the pLDDT scores.
@@ -263,14 +265,16 @@ If we click on the `Trajectory` tab of the `Graphical Representations` window, w
 
 The default color scale runs from blue (low values) to green to red (high values).
 
-<img src='files/screenshots/colorbybeta.png' width='1200'>
+<img src='files/screenshots/color-by-beta.png' width='600'>
 
-At this point, lets consider some questions:
+## *INSTRUCTIONS FOR HOMEWORK SUBMISSION (3/4)* ##
 
-- How different are the pLDDT scores when there are no templates (1970), or a number of template structures in the PDB (2023)?
-- How important is structural homology/good templates to predicting an accurate structure?
+Answer the following questions:
+- How different are the pLDDT scores for the predictions with (max_template_date=2022) and without (max_template_date=1970) templates?
+- How important is structural homology/good templates for predicting an accurate structure?
 - Where are the pLDDT scores the lowest in the structure? What is special about these parts of the protein?
-- Based on the FAQ excerpt, how confident would you be as a structural biologist in making predictions based on these predicted structures?
+
+## ##
 
 ## Variability in AlphaFold models
 

@@ -263,7 +263,7 @@ Within the graphical representations window, we can select the molecule we are e
 Then change the coloring method to from `ColorID` to `beta`, which uses the maximum and minimum beta values encoded in the structure to color the protein, i.e., the pLDDT scores.
 If we click on the `Trajectory` tab of the `Graphical Representations` window, we find the `Color Scale Data Range`, which shows you the minimum and maximum values for the `beta` column (the pLDDT score). You can also change them for each molecule to allow for better comparisons, i.e., set the lowest value to 50 fand the highest to 100.
 
-The default color scale runs from blue (low values) to green to red (high values).
+The default color scale runs from red (low values) to white to blue (high values).
 
 <img src='files/screenshots/color-by-beta.png' width='600'>
 

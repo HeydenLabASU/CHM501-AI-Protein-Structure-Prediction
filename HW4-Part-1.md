@@ -1,5 +1,5 @@
 # Homework 4 Part 1 #
-(special thanks to Josh Vermaas, a dear colleague at Michigan State University who prepared a first version of this tutorial)
+Special thanks to Josh Vermaas (Michigan State University) who prepared a previous version of this tutorial!
 
 What AlphaFold and similar tools do is combine information from structural and sequence databases to predict protein structures.
 The main goals for this exercise are:

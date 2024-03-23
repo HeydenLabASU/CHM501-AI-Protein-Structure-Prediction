@@ -227,7 +227,7 @@ cd ~/CHM501/HW4/Example-3
 ls
 ```
 
-There will be a `.fasta` file as usual, `1BRS.fasta`.
+You'll find a `.fasta` file as usual, `1BRS.fasta`.
 If we print if to the terminal (using the `cat` command), we see that there are two sequences listed, one for the toxic bacterial enzyme barnase, and one for its inhibitor barstar.
 
 The Barnase-Barstar complex is one of the tightest protein-protein complexes known, with a [standard binding free energy of around -20 kcal/mol](https://pubs.acs.org/doi/10.1021/ct400273t).
@@ -244,6 +244,9 @@ sbatch run-monomer.sh
 sbatch run-multimer.sh
 squeue --me
 ```
+
+*Note:* I was not able to get this example, specifically AlphaFold2-multimer, to work on SOL. I was able to trace the error back to a change in AlphaFold2's source code introduced some time in 2023 (it turns out other users are experiencing the same issue). Feel free to run the script nevertheless to see the error. 
+For now, I already added the expected output files to your folder so that you can use them in Part 2 of this Homework.
 
 ### Odds and Ends ###
 

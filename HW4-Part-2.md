@@ -229,7 +229,7 @@ For this purpose, we have another VMD script to load the structures automaticall
 cd ..
 #just in case your are using a new terminal
 module load vmd-1.9.3-gcc-11.2.0
-vmd -e load-comparison.tcl
+vmd -e VMDscripts/load-comparison.tcl
 ```
 
 VMD should open with two windows as usual. Three distinct structures will be loaded:
@@ -282,53 +282,42 @@ So far, we've been taking pains to only load in the single-best model that Alpha
 But at least on the default settings, AlphaFold will output multiple different potential structures.
 Sometimes, these are pretty similar, particularly for single domain proteins.
 But for protein complexes, sometimes AlphaFold will generate multiple conformations, and it is up to the user to determine which conformation makes the most sense.
-We again have a prepared script (`loadexercise3.tcl`) to investigate in `gedit`, and to run in the terminal.
+
+We will investigate this for the Barnase-Barstar protein complex, for which we ran the structure prediction in Example-3. 
+Again, we are using a script to automatically load the predicted structures.
 
 ```bash
-#Change directories again
-cd $SCRATCH/vmdscripts
-#This sets up VMD to be used. (Not technically needed every time if you are using the same terminal)
-module use /mnt/home/vermaasj/modules
-module load VMD
-#Load the results.
-vmd -e loadexercise3.tcl
+cd ~/CHM501/HW4/Example-3
+#just in case your are using a new terminal
+module load vmd-1.9.3-gcc-11.2.0
+vmd -e VMDscripts/load-complex.tcl
 ```
 
-That will bring up a screen that looks something like what is below.
-Note that if you click in the lower right of the VMD main window, you can animate through the 25 different structures for the Barnase-Barstar complex that AlphaFold generated.
+That will bring up a screen that looks something like what is shown below.
+Note that if you click in the lower right of the VMD main window, you can animate through the 25 different structures for the Barnase-Barstar complex that AlphaFold2 generated.
 How consistent are the 25 different structures for the complex?
+
 Here is an instance where we can quantify that through the RMSD trajectory tool again.
-How big is the RMSD in this case?
+Choose the backbone and click on the "Plot" check box before clicking on the "RMSD" button. This will generate a plot of the RMSD as a function of the model index. 
 
-<img src='files/screenshots/posecomparison.png' width='1200'>
+<img src='files/screenshots/poses.png' width='600'>
 
-Now, it is not always sunshine and rainbows.
-In my own research, I'm working with this trimeric protein, which is known to biochemically interact with another protein.
-If we load the AlphaFold results for this setup with a different script, and play the animation forward, the result is very different!
+## *INSTRUCTIONS FOR HOMEWORK SUBMISSION (4/4)* ##
 
-```bash
-#Change directories again
-cd $SCRATCH/vmdscripts
-#This sets up VMD to be used. (Not technically needed every time if you are using the same terminal)
-module use /mnt/home/vermaasj/modules
-module load VMD
-#Load the results.
-vmd -e loadPduST.tcl
-```
+Answer the following questions:
+- Prepare a snapshot of the RMSD vs. model index grpah
+- Which frame has the largest RMSD with respect to the reference (best prediction)?
+- Prepare a snapshot in which you show the structures of the refernce (best prediction) and the structure with the largest RMSD amond the 25 models
 
-The astute among you may wonder why this system is a bigger challenge.
-After all, nothing really fundamental changed in the input or the way I was running AlphaFold.
-The protein is bigger for sure, which might play a role since there are more potential combinations for how things might interact.
-It probably also does not help that there are fewer good templates for how this protein might interact compared with crystal structures for Barnase/Barstar.
+## ##
 
-However, I think that the real difference is in the biochemistry.
-We intentionally picked a really strong interaction between Barnase and Barstar as our reference, which has a very well defined and tight-binding interaction.
-The PduST system may simply not have as strong of a binding interaction, perhaps even reflecting transient binding.
-This is a real, testable biochemistry hypothesis that can be experimentally verified, even if it is not the clearest.
+
+Now, it is not always sunshine and rainbows as it is here, where all structures are essentially identical. 
+The complex for which we predicted the structure is one with the strongest protein-protein interactions known. Predicting the structure of protein complexes becomes substantially more difficult for complex with weak interactions (dissociation constants in micro- to millimolar range compared to femtomolar for Barnase-Barstar). However, you now have the tools you need to predict such structures and to evaluate the model confidence.
 
 ## Wrapping up
 
-At this point, you hopefully have a flavor for what all can be done with AlphaFold and similar artificial intelligence tools.
+At this point, you hopefully have a flavor for what can be done with AlphaFold2 and similar artificial intelligence tools for protein structure prediction.
 They can clearly predict protein structure, and often reasonably well.
 However, in cases where the methods are asked to predict something far outside of their training data, they can struggle.
 But, given how *cheap* it is to run AlphaFold and similar methods, it never hurts to take a look what kinds of hypotheses you can generate based on their predictions.

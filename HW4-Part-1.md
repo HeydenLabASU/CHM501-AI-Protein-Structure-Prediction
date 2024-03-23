@@ -260,4 +260,4 @@ The `mkdir` ommand generates directories/folders and to change directories you u
 You can use multiple `cd` commands to go deeper into a directory tree, i.e., to open a folder, then one of its subfolders, and a subfolder of that subfolder etc. 
 Importantly, `cd ..` will move you one directory "up" in this directory tree.
 
-To edit text file using the terminal, use the command `vi`. This is an in-terminal text editor. Look up an online manual for its basic functionality first. `vi` is a very useful tool but not intuitive. For example,  when you use for the first time to open a file, you will need the manual to learn how to close the file again.
+To edit text file using the terminal, use the commands `vi` or `emacs`. Both are in-terminal text editors. Look up an online manual for basic functionality first. `vi` and `emacs` are very useful tools but their usage is not intuitive. For example, when you use them to open a file, you will need a manual to learn how to close the file again.

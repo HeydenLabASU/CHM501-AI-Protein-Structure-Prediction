@@ -6,10 +6,10 @@ Now we will examine how similar the structure predictions for the peptide struct
 
 First, create a folder/directory on your computer with the name `webserver-predictions`. Then copy the `.pdb` files with the predicted structures into that folder. For compatibility with the scripts you will use later, name the files as follows:
 
-- colabfold.pdb
-- DITASSER.pdb
 - ESMFold.pdb
+- ColabFold.pdb
 - topsuite.pdb
+- DITASSER.pdb
 
 I skipped RoseTTAFold here, because previous attempts indicated that the wait time for the RoseTTAFold prediction might be long to be practical for this exercise. 
 
@@ -35,108 +35,96 @@ First, we need to load the VMD module using the following terminal command:
 module load vmd-1.9.3-gcc-11.2.0
 ```
 
-Now, we use the terminal to navigate to the `CHM501/HW4` folder. 
+## Comparing Structure Predictions ##
+
+Now, we use the terminal to navigate to the `CHM501/HW4` folder. Next we need to load the `.pdb` files with the predictions into VMD and visualize them. 
+
+For this, we can simply use a pre-prepared script that contains all necessary commands. We can also load the files "by hand" using VMD's graphical user interface and the mouse, but this is too tedious.
+
+The script is located in your `VMDscripts` directory and we can inspect it by printing its content to the terminal.
+```bash
+cat VMDscripts/load-peptide.tcl
+```
+
 ```TCL
-mol new ../Example1/exampleoutput/relaxed_model_3_pred_0.pdb
+mol new Example-1/exampleoutput/relaxed_model_3_pred_0.pdb
 mol rename top AlphaFold
-mol new ../Example1WebserverOutput/ESMFold.pdb
-mol new ../Example1WebserverOutput/collabfold.pdb
-mol new ../Example1WebserverOutput/topsuite.pdb
-mol new ../Example1WebserverOutput/DITASSER.pdb
+mol new webserver-predictions/ESMFold.pdb
+mol new webserver-predictions/ColabFold.pdb
+mol new webserver-predictions/DITASSER.pdb
+mol new webserver-predictions/topsuite.pdb
 mol top 0
-#This does alignment for all the structure
-set ref [atomselect top "name CA"]
-for { set i 0 } { $i < [molinfo num] } { incr i } {
-	set asel [atomselect $i "all"]
-	set sel [atomselect $i "name CA"]
-	$asel move [measure fit $sel $ref]
-	$asel delete
-	$sel delete
-}
 
 set colorlist [list 0 1 3 7 6]
-#This changes the representations so that you can tell which is which.
+# AlphaFold = blue (0)
+# ESMfold   = red (1)
+# ColabFold = orange (3)
+# DITASSER  = silver (6)
+# topsuite  = green (7)
 for { set i 0 } { $i < [molinfo num] } { incr i } {
+    #This sets distinct colors for each prediction model
 	mol modcolor 0 $i ColorID [lindex $colorlist $i]
+    #This sets the 'Drawing Method' to NewCartoon which highlights secondary structure
 	mol modstyle 0 $i NewCartoon 0.300000 10.000000 4.100000 0
 }
 menu main on
 display resetview
 ```
 
+Note, that if you used different names for the `.pdb` files or the directory, you will either need to modify the script or change the names according to the script.
 
+To rename files or folders, use the `mv` terminal command. To edit the text files, use the `vi` or `emacs` command line text editors.
 
-How do we know if the structures are any good?
-While we know that in general AlphaFold and related modeling approaches are pretty good, that does not mean that they are always going to be equally accurate for every protein sequence.
-In general, the more similar a protein is to existing protein structures, the more confident these tools will be in their predictions.
+## Webserver output comparison ##
 
-Our task for today is to analyze how good or bad our predictions were, and develop some sense or estimate for how much time you'll need to ask for if you want to predict your own structure.
+In terms of speed, ESMFold should have predicted a structure almost instantaneously, ColabFold within a minute or two, while the other webservers are considerably slower, ranging in response times between hours to days. Did you get a response from RoseTTAFold? If not, don't worry.
 
-## Getting files from the supercomputer
-
-There is documentation on how to transfer files to and from the supercomputer [provided by ICER](https://docs.icer.msu.edu/File_transfer/).
-Quoting from this documentation:
-```
-The most straightforward way to transfer files to and from the HPCC is via our OnDemand web portal. Log in with your NetID at https://ondemand.hpcc.msu.edu and click "Files" to access your different user spaces.
-```
-
-## Webserver output comparison
-
-In my hands, ESMFold was basically instantaneous, ColabFold was pretty quick (a minute or two), and the other webservers were considerably slower, ranging in response times between hours to days.
-RosettaFold still hasn't gotten back to me!
 How do the results compare against each other?
 How does AlphaFold do in [Example 1](Example-1), when it was predicting the structure for the same sequence?
-We can answer all of those questions from a structural perspective by using visualization tools to look at the predicted structures, as well as the information that is encoded in the output.
+We can answer all of those questions qualitatively and quantitatively using visualization and analysis tools such as VMD and the information encoded in the output files.
 
-The way we'll do this is to load the structures we predicted into VMD, a tool for visualizing protein structures.
-Pymol or ChimeraX would also work, but since Dr. Vermaas is far more familiar with VMD, he's using its scripting capabilities to do alot of the structure alignment and manipulation automatically.
-The commands we'll be entering into a terminal inside of the OnDemand session are as follows:
-
+To use the `load-peptide.tcl` script to load all the files in VMD, type on the command line:
 ```bash
-#Change directories again
-cd $SCRATCH/vmdscripts
-#This sets up VMD to be used.
-module use /mnt/home/vermaasj/modules
-module load VMD
-#Load the results.
-vmd -e loadexercise1.tcl
+vmd -e VMDscripts/load-peptide.tcl
 ```
 
-The `vmd` command is the critical one here, which tells VMD to run the script inside the `loadexercise1.tcl` script.
-You will be greeted by a view that looks something like this:
+VMD will open and you should see two windows, the VMD Main window, which lists the loaded molecules, and the OpenGL display with the protein structures.
 
-<img src='files/screenshots/VMDExercise1.png' width='1200'>
+The script visualizes each protein based on its secondary structure and assigns different colors to each prediction (the comments in the script above tell you which one is which).
 
-What I've prepared is a view for the best AlphaFold result, along with the webserver results (ESMFold, ColabFold, topsuite, and DITasser).
-Each one of the proteins is its own color, and has been drawn as a cartoon with the secondary structure.
-Visually, after alignment the proteins look to be basically identical between the different prediction methods.
-One of them (the gray one for DITASSER), makes beta-sheets that VMD does not quite recognize as perfect, and so the cartoon representation we are using here does not show the proteins as being identical.
+However, all structures look very different at first, because orientation of the predicted peptide structures in 3D space is random. 
+To make a proper comparison, we need to rotate the proteins into a common orientation. 
 
-How can we quantify this similarity?
-A typical structural metric is the [root mean square deviation (RMSD)](https://en.wikipedia.org/wiki/Root-mean-square_deviation), which measures how different a particular structure is from a reference structure.
-The way it does this is to track for each atom selected for analysis, and compare how different the position of the atom is relative to the reference position.
-The distance is squared, averaged together, and then the square root gets taken to come up with a collective number to represent how different a structure is from that reference.
-Smaller numbers mean greater similarity, while larger numbers mean smaller similarity.
+Essentially, we need to rotate the proteins to make them look as similar as possible, so that any differences are associated with distinct structures and not position or rotation. 
+The measurement of similarity that we use is the [root mean square deviation (RMSD)](https://en.wikipedia.org/wiki/Root-mean-square_deviation), which measures how different two structures are relative to each other. 
 
-VMD has a tool to simplify this kind of analysis, known as the RMSD trajectory tool.
-This can be opened via `Extensions->Analysis->RMSD Trajectory Tool`, which will open a new window.
-Since RMSD is an atom-wise, we need to make a selection that has the same number of atoms across all the loaded structures.
-The different structure generation programs handle the C-terminal differently, and so to get an equivalent number of atoms, we will be comparing `protein and not name OXT`, which tells VMD to ignore atoms named OXT on the C-terminus.
+The easiest way to do that is with one of VMD's built-in analysis tool called `RMSD Trajectory Tool`. Click on `Extensions` on the top of the VMD Main window, then click `Analysis` and `RMSD Trajectory Tool`. 
 
-<img src='files/screenshots/rmsdtrajtoolopening.png' width='1200'>
+<img src='files/screenshots/rmsdtrajtool.png' width='600'>
 
-To calculate the RMSD, we would click the `RMSD` button in the upper right, usually calculated after alignment.
-Note that the RMSDs are not that large.
-A sub-3 Angstrom crystal structure is pretty good, and most of the differences are smaller than that.
-Try clicking on different selection modifiers and recalculating the RMSD.
-The `Backbone` selection only selects atoms along the protein backbone, while `noh` also includes sidechains.
-Another option in the tool is to use the `selected` molecule as a reference.
-When you realign the structures to this new reference, you can then also recalculate the RMSD.
-Since the reference molecule is identical to itself, the RMSD will be 0, but otherwise, you can get a sense for which models are more similar to each other.
+The RMSD is an atom-wise measurement, however, the different protein structures have distinct numbers of atoms.
+AlphaFold2 includes hydrogens, while the other tools do not. Further, the C-terminus is handled differently by the distinct prediction tools.
+Therefore, we need to define a selection of atoms in each structure that is identical in each of them. 
+We do this by replacing the default selection "*protein*" by "*protein and not name OXT*". 
 
-A few questions to consider at this stage:
-- Between `Backbone` or `noh`, which option generally gives you a larger RMSD, and why might that be?
-- Based on the RMSDs, which of the webservers is the AlphaFold result most similar to?
+Using the check boxes below, we can further select only backbone atoms ("backbone") or all non-hydrogen atoms within our selection ("noh"). Select one of them, then click on the "Align" button.
+
+Now, you will see that the predicted structures are indeed very similar. 
+One of them (the silver one for DITASSER), makes beta-sheets that VMD does not quite recognize as perfect. Consequently, the cartoon representation used here does not look the same as for the other proteins. 
+However, the actual differences in the atomic positions are similar.
+
+To measure how similar the structures are, click on the "RMSD" button. The first structure (the AlphaFold2 prediction) is used as the reference and the RMSD to itself is of course zero. 
+How large are the RMSD's for the other structures (VMD measures the RMSD in Angstrom)?
+
+*SUBMISSION*
+Create a document with a screenshot of the aligned structures and their RMSD's. Perform the alignment and subsequence RMSD calculation both for backbone and non-hydrogen atoms and compare the results. Answer the following questions:
+- Which RMSD (backbone or noh) is larger? 
+- Can you explain why?
+- Which of the webserver predictions is most similar to AlphaFold2?
+
+
+Overall, we note that the RMSD's between the different predictions are not very large.
+A crystal structure with a sub-3 Angstrom resolution is pretty good and most of the differences are smaller than that.
 
 ## What else can AlphaFold tell you?
 

@@ -44,6 +44,7 @@ For this, we can simply use a pre-prepared script that contains all necessary co
 
 The script is located in your `VMDscripts` directory and we can inspect it by printing its content to the terminal.
 ```bash
+cd ~/CHM501/HW4
 cat VMDscripts/load-peptide.tcl
 ```
 

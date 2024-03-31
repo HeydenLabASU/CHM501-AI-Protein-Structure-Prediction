@@ -288,7 +288,7 @@ We will investigate this for the Barnase-Barstar protein complex, for which we r
 Again, we are using a script to automatically load the predicted structures.
 
 ```bash
-cd ~/CHM501/HW4/Example-3
+cd ~/CHM501/HW4
 #just in case your are using a new terminal
 module load vmd-1.9.3-gcc-11.2.0
 vmd -e VMDscripts/load-complex.tcl

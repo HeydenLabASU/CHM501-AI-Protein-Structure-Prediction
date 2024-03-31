@@ -205,7 +205,7 @@ Theresult of both predictions, we can of course also compare to the actual, expe
 To run AlphaFold2 with both scripts, you can submit the corresponding jobs to the SLURM scheduler simultaneously (you do not need to wait for one of them to finish).
 
 ```bash
-sbatch run.sh
+sbatch run-full.sh
 sbatch run-notemplates.sh
 squeue --me
 ```

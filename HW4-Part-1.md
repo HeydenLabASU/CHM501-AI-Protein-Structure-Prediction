@@ -14,7 +14,7 @@ For instance, in addition to the many experimentally solved structures for citra
 
 <img src='files/screenshots/uniprot_citrate-synthase_structure.png' width='1200'>
 
-DeepMind has already [predicted the structure for almost all proteins in humans and in multiple model organisms](https://www.deepmind.com/blog/alphafold-reveals-the-structure-of-the-protein-universe), and made these available to the public through the [AlphaFold Protein Structure Database](https://alphafold.ebi.ac.uk/).
+DeepMind has already [predicted the structures for almost all proteins in humans and in multiple model organisms](https://www.deepmind.com/blog/alphafold-reveals-the-structure-of-the-protein-universe), and made these available to the public through the [AlphaFold Protein Structure Database](https://alphafold.ebi.ac.uk/).
 
 ## Webservers! ##
 

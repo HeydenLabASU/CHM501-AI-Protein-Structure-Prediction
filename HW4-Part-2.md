@@ -14,7 +14,7 @@ First, create a folder/directory on your computer with the name `webserver-predi
 
 I skipped RoseTTAFold here, because previous attempts indicated that the wait time for the RoseTTAFold prediction might be long to be practical for this exercise. 
 
-Navigate to [sol.asu.edu](sol.asu.edu) in your browser and log in with your ASURITE ID. Then click on Files -> Home Directory as shown below. 
+Navigate to [sol.asu.edu](https://sol.asu.edu) in your browser and log in with your ASURITE ID. Then click on Files -> Home Directory as shown below. 
 
 <img src='files/screenshots/00-SOL-files.png' width='600'>
 

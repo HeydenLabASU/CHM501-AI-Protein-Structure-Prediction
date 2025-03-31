@@ -10,7 +10,7 @@ The main goals for this exercise are:
 
 DeepMind, the Google division that developed AlphaFold, has run the prediction software on many proteins already!
 These are often available on [Uniprot](https://www.uniprot.org/).
-For instance, in addition to the many experimentally solved structures for citrate synthase (enzyme that catalyzes first reaction in Krebs cycle), the [Uniprot entry for citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) (see section structure) also has the structure predicted by available for download.
+For instance, in addition to the many experimentally solved structures for citrate synthase (enzyme that catalyzes first reaction in Krebs cycle), the [Uniprot entry for citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) (see section structure) also has the structure predicted by AlphaFold2 available for download.
 
 <img src='files/screenshots/uniprot_citrate-synthase_structure.png' width='1200'>
 

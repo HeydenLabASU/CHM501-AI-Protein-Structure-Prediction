@@ -62,7 +62,7 @@ Take a minute to read through the instructions.
 We won't be following them, since we already have a working version of AlphaFold2 available on SOL.
 But, if you wanted to install AlphaFold2 on your own computer, you can!
 
-To access SOL, we will again use the web interface provided by ASU's Research Computing core facility, which you can find here: [sol.asu.edu](https://sol.asu.edu).
+To access SOL, we will again use the web interface provided by ASU's Research Computing core facility, which you can find here: [sol.asu.edu](sol.asu.edu).
 
 To run AlphaFold2 on SOL, we will again use the text-based interface called terminal or shell, which you already used in Homework 2 to receive the files for the linear and non-linear regression exercise. 
 

@@ -38,7 +38,7 @@ Lets copy that amino acid sequence and use it as an input for the following webs
 
 - [ESMFold](https://esmatlas.com/resources?action=fold) by Meta
 - [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb) from Seoul National University in South Korea
-- [RoseTTAFold](https://robetta.bakerlab.org) from the Baker lab a University of Washington Washington (requires making an account)
+- [RoseTTAFold](https://robetta.bakerlab.org) from the Baker lab a University of Washington Washington (requires creating an account)
 - [D-I-Tasser](https://zhanggroup.org/D-I-TASSER/) by the Zhang group at the University of Michigan
 - [TopModel](https://cpclab.uni-duesseldorf.de/topsuite/topmodel.php), developed by the [Gohlke group at the University of Duesseldorf in Germany](https://doi.org/10.1021/acs.jcim.0c01202)
 

@@ -308,7 +308,7 @@ Choose the backbone and click on the "Plot" check box before clicking on the "RM
 Answer the following questions:
 - Prepare a snapshot of the RMSD vs. model index grpah
 - Which frame has the largest RMSD with respect to the reference (best prediction)?
-- Prepare a snapshot in which you show the structures of the refernce (best prediction) and the structure with the largest RMSD amond the 25 models
+- Prepare a snapshot in which you show the structures of the reference (best prediction) and the structure with the largest RMSD amond the 25 models
 
 ## ##
 

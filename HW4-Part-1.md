@@ -1,20 +1,21 @@
 # Homework 4 Part 1 #
-Special thanks to Josh Vermaas (Michigan State University) who prepared a previous version of this tutorial!
 
-What AlphaFold and similar tools do is combine information from structural and sequence databases to predict protein structures.
-The main goals for this exercise are:
-- Get to know some of the protein structure prediction webservers
-- Learn how to use local high performance computing resources to predict more complicated protein structures
+Special thanks to Josh Vermaas (Michigan State University), who prepared an earlier version of this tutorial!
 
-## Do I need to run AlphaFold at all? ##
+AlphaFold and related tools combine information from protein sequence and structure databases to predict three-dimensional protein structures.
 
-DeepMind, the Google division that developed AlphaFold, has run the prediction software on many proteins already!
-These are often available on [Uniprot](https://www.uniprot.org/).
-For instance, in addition to the many experimentally solved structures for citrate synthase (enzyme that catalyzes first reaction in Krebs cycle), the [Uniprot entry for citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) (see section structure) also has the structure predicted by AlphaFold2 available for download.
+The main goals of this exercise are:
 
-<img src='files/screenshots/uniprot_citrate-synthase_structure.png' width='1200'>
+- Become familiar with several web servers for protein structure prediction.
+- Learn to use local high-performance computing resources to predict more complex protein structures.
 
-DeepMind has already [predicted the structures for almost all proteins in humans and in multiple model organisms](https://www.deepmind.com/blog/alphafold-reveals-the-structure-of-the-protein-universe), and made these available to the public through the [AlphaFold Protein Structure Database](https://alphafold.ebi.ac.uk/).
+## Do I need to run AlphaFold at all?
+
+Predicted structures are already available for many proteins, so you may not need to run AlphaFold yourself. The [AlphaFold Protein Structure Database](https://alphafold.ebi.ac.uk/) provides predictions generated using AlphaFold, many of which can also be accessed through [UniProt](https://www.uniprot.org/).
+
+For example, numerous experimentally determined structures are available for citrate synthase, the enzyme that catalyzes the first reaction of the citric acid cycle. The **Structure** section of the [UniProt entry for human citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) also includes an AlphaFold2 prediction that can be viewed online or downloaded.
+
+<img src='files/screenshots/uniprot_citrate-synthase_structure.png' alt="AlphaFold2 prediction of human citrate synthase" width='1200'>
 
 ## Webservers! ##
 

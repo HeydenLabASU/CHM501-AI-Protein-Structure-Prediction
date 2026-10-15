@@ -51,47 +51,22 @@ Some predictions may take a while to complete. Keep the corresponding browser ta
 
 ***Download and save each predicted structure in PDB format. You will analyze these files later.***
 
-## Running AlphaFold2 Yourself! ##
+## AlphaFold3 @ ASU ##
 
-Now lets pretend that you cannot use a webserver.
-Maybe your protein is too complicated to solve on the computing resources folks will give away for free, or you are working in a setting where the protein sequence is a trade secret that you cannot disclose to a webserver.
-What do you do then?
-The model for AlphaFold2 has been released to the public, and is available for download on [github](https://github.com/google-deepmind/alphafold).
-Take a minute to read through the instructions.
-We won't be following them, since we already have a working version of AlphaFold2 available on SOL.
-But, if you wanted to install AlphaFold2 on your own computer, you can!
+There are multiple reasons not to use webservers. For example, you may be working in protein design and need to protect intellectual property (the amino acid sequence of your protein). Or you need to predict the structure of a larger set of sequences, which goes beyond what free webservers allow you to do.
 
-To access SOL, we will again use the web interface provided by ASU's Research Computing core facility, which you can find here: [sol.asu.edu](https://sol.asu.edu).
+The AlphaFold models and parameters have been released to the public. 
 
-To run AlphaFold2 on SOL, we will again use the text-based interface called terminal or shell, which you already used in Homework 2 to receive the files for the linear and non-linear regression exercise. 
+- [AlphaFold2 on GitHub](https://github.com/google-deepmind/alphafold)
+- [AlphaFold3 on GitHub](https://github.com/google-deepmind/alphafold3)
 
-Once you see this screen:
+In principle, you could install AlphaFold2 or AlhpaFold3 on your own computer. However, as many ML/AI applications, these models work best on specialized hardware (GPUs or, as in our cse, HPUs), require the download of large datasets, additional tools for multiple sequence alignments (MSA), etc. 
 
-<img src='files/screenshots/00-shell.png' width='640'>
+However, ASU's Research Computing team has done this for us and AlphaFold3 is ready to run on the new Intel Gaudi2 system with a user friendly interface. Go to your [voyager page](voyager.rc.asu.edu) (requires VPN connection) and select the 'FastFold (AlphaFold) Protein Folding' workflow.
 
-click on `System` --> `>_Sol Shell Access to start your terminal session:
+<img src='files/screenshots/voyager_fastfold-1.png' alt="screenshot of Voyager web interface" width=1200>
 
-<img src='files/screenshots/01-SOL-shell-login.png' width='640'>
 
-Now use the following set of commands to copy the files you need for this exercise:
-
-Enter the previously created `CHM501` directory in your home directory on SOL:
-```bash
-cd CHM501
-```
-Then copy the files you need for this exercise (don't forget the full stop `.`):
-```bash
-cp -r /scratch/mheyden1/CHM501/HW4 .
-```
-Then enter the `HW4` directory:
-```bash
-cd HW4
-```
-To see the contenct of the `HW4` directory, type:
-```bash
-ls
-```
-Each of three folders contains one usage example for a full protein structure prediction with AlphaFold2. This includes multiple sequence alignment and homology template generation (largely disabled in Example-2) as well as running the full AlphaFold2 network with all of its features.
 
 These examples will provide you with a guide on how to run AlphaFold2 protein predictions, e.g., for your research projects.
 - [Example 1](Example-1) is for the same single domain protein we have been using for the webservers, which folds into secondary structure that is well established.

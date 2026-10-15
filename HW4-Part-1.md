@@ -17,41 +17,39 @@ For example, numerous experimentally determined structures are available for cit
 
 <img src='files/screenshots/uniprot_citrate-synthase_structure.png' alt="AlphaFold2 prediction of human citrate synthase" width='1200'>
 
-## Webservers! ##
+## Protein structure prediction web servers
 
-If you really just want an answer for a protein structure *right away*, the easiest thing to do is to run AlphaFold or another protein structure prediction tool within a webserver.
-In this scenario, you will upload one or multiple protein sequences of interest to a website, which will use computing resources provided by someone else to predict the protein structure.
-A popular webserver for protein prediction is [ColabFold](https://github.com/sokrypton/ColabFold), which provides an easy-to-use interface to do AlphaFold-like things, since it implements everything as a Jupyter notebook and is quite interactive.
-ColabFold's claim to fame is that it has a cheaper way of doing the initial multiple sequence alignments (MSA) and homology searches, which are described in the [companion paper to the webserver](https://doi.org/10.1038%2Fs41592-022-01488-1).
+For a quick protein structure prediction, the simplest approach is often to use AlphaFold or a related tool through a web server. You provide one or more protein sequences, and the server uses remote computing resources to generate the predicted structure.
 
-There are other webservers too.
-Protein structure prediction is a rapidly evolving field where multiple groups have their own ideas as to how they should take the ideas that AlphaFold pioneered and make them work better, or take less compute time.
-The competitors include tech giants like Meta who developed a neural network called ESMFold to [predict protein structures](https://esmatlas.com/), which was published in [_Science_ in 2023](https://doi.org/10.1126/science.ade2574).
-Other, more classical approaches, such as I-TASSER, were the best options before machine learning and AI methods for protein structure prediction became widespread.
-The corresponding [webserver still exists](https://zhanggroup.org/I-TASSER/) and provides a window into the pre-AlphaFold universe of protein structure prediction.
+A popular option is [ColabFold](https://github.com/sokrypton/ColabFold), which provides an accessible, interactive interface through a Jupyter notebook. ColabFold accelerates the multiple sequence alignment (MSA) and homology-search steps used by AlphaFold. The method is described in the [paper accompanying the web server](https://doi.org/10.1038%2Fs41592-022-01488-1).
 
-Just so we get a sense of how these webservers work, we will try some of them here.
-Here is a short peptide sequence that contains some protein secondary structure, a helix and a few beta sheets.
+Several other web servers are also available. Protein structure prediction is a rapidly evolving field, and different research groups have developed methods that aim to improve prediction accuracy or reduce computational cost. For example, Meta developed ESMFold, a neural-network model for [predicting protein structures](https://esmatlas.com/). The method was published in [_Science_ in 2023](https://doi.org/10.1126/science.ade2574).
+
+More established methods also remain available. Before machine-learning approaches became widespread, I-TASSER was among the leading tools for protein structure prediction. The [I-TASSER web server](https://zhanggroup.org/I-TASSER/) therefore provides an opportunity to explore an approach developed before AlphaFold.
+
+To compare these tools, you will use several web servers to predict the structure of the following short protein sequence. The sequence is expected to form both alpha-helical and beta-sheet secondary structures.
+
 ```
 PIAQIHILEGRSDEQKETLIREVSEAISRSLDAPLTSVRVIITEMAKGHFGIGGELASK
 ```
-Lets copy that amino acid sequence and use it as an input for the following webservers:
 
-- [ESMFold](https://esmatlas.com/resources?action=fold) by Meta
-- [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb) from Seoul National University in South Korea
-- [RoseTTAFold](https://robetta.bakerlab.org) from the Baker lab a University of Washington Washington (requires creating an account)
-- [D-I-Tasser](https://zhanggroup.org/D-I-TASSER/) by the Zhang group at the University of Michigan
-- [TopModel](https://cpclab.uni-duesseldorf.de/topsuite/topmodel.php), developed by the [Gohlke group at the University of Duesseldorf in Germany](https://doi.org/10.1021/acs.jcim.0c01202)
+Copy the amino acid sequence and submit it to each of the following web servers:
 
-Questions to consider as you are going through the webservers:
+- [ESMFold](https://esmatlas.com/resources?action=fold), developed by Meta
+- [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb), developed at Seoul National University in South Korea
+- [RoseTTAFold](https://neurosnap.ai/service/RoseTTAFold%20All-Atom), developed by the Baker laboratory at the University of Washington (requires a NeuroSnap account; limited free credits are available)
+- [D-I-TASSER](https://zhanggroup.org/D-I-TASSER/), developed by the Zhang group at the National University of Singapore (formerly at the University of Michigan)
 
-1. How fast is the webserver at returning a result? (if one of them takes longer than 24 hours, you can ignore it)
-2. In entering the sequence, is it obvious if the method can predict protein complexes?
-3. Do the output structures look similar to one another?
-4. How would you save the output structure to your own computer for further analysis?
+As you work through the web servers, consider the following questions:
 
-Be warned, some of these webservers are relatively slow, so keep the tab open in the background as you work through the list.
-*Save the structure files (pdb) to your own computer! You'll need to analyze them later!*
+1. How long does each server take to return a result? If a prediction takes longer than 24 hours, you may omit it from the comparison.
+2. When entering the sequence, can you determine whether the method supports the prediction of protein complexes?
+3. How similar are the structures predicted by the different methods?
+4. How can you download each predicted structure to your computer for further analysis?
+
+Some predictions may take a while to complete. Keep the corresponding browser tabs open while you continue working through the list.
+
+***Download and save each predicted structure in PDB format. You will analyze these files later.***
 
 ## Running AlphaFold2 Yourself! ##
 

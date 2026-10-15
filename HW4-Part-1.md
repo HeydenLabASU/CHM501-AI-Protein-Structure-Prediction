@@ -62,10 +62,13 @@ The AlphaFold models and parameters have been released to the public.
 
 In principle, you could install AlphaFold2 or AlhpaFold3 on your own computer. However, as many ML/AI applications, these models work best on specialized hardware (GPUs or, as in our cse, HPUs), require the download of large datasets, additional tools for multiple sequence alignments (MSA), etc. 
 
-However, ASU's Research Computing team has done this for us and AlphaFold3 is ready to run on the new Intel Gaudi2 system with a user friendly interface. Go to your [voyager page](voyager.rc.asu.edu) (requires VPN connection) and select the 'FastFold (AlphaFold) Protein Folding' workflow.
+However, ASU's Research Computing team has done this for us and AlphaFold3 is ready to run on the new Intel Gaudi2 system with a user friendly interface. Go to your [voyager page](voyager.rc.asu.edu) (requires VPN connection), go to 'Workflows & Apps', 'Catalog' and select the 'FastFold (AlphaFold) Protein Folding' workflow template (see red arrows in screenshot below).
 
 <img src='files/screenshots/voyager_fastfold-1.png' alt="screenshot of Voyager web interface" width=800>
 
+In the flowchart, click on the 'alphafold' icon and paste your sequence in the corresponding field on the right (see red arrows in screenshot below).
+
+<img src='files/screenshots/voyager_fastfold-2.png' alt="screenshot of AlphaFold3 workslow" width=800>
 
 
 These examples will provide you with a guide on how to run AlphaFold2 protein predictions, e.g., for your research projects.

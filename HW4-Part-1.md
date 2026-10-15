@@ -15,7 +15,7 @@ Predicted structures are already available for many proteins, so you may not nee
 
 For example, numerous experimentally determined structures are available for citrate synthase, the enzyme that catalyzes the first reaction of the citric acid cycle. The **Structure** section of the [UniProt entry for human citrate synthase](https://www.uniprot.org/uniprotkb/O75390/entry) also includes an AlphaFold2 prediction that can be viewed online or downloaded.
 
-<img src='files/screenshots/uniprot_citrate-synthase_structure.png' alt="AlphaFold2 prediction of human citrate synthase" width='1200'>
+<img src='files/screenshots/uniprot_citrate-synthase_structure.png' alt="AlphaFold2 prediction of human citrate synthase" width='800'>
 
 ## Protein structure prediction web servers
 
@@ -64,7 +64,7 @@ In principle, you could install AlphaFold2 or AlhpaFold3 on your own computer. H
 
 However, ASU's Research Computing team has done this for us and AlphaFold3 is ready to run on the new Intel Gaudi2 system with a user friendly interface. Go to your [voyager page](voyager.rc.asu.edu) (requires VPN connection) and select the 'FastFold (AlphaFold) Protein Folding' workflow.
 
-<img src='files/screenshots/voyager_fastfold-1.png' alt="screenshot of Voyager web interface" width=1200>
+<img src='files/screenshots/voyager_fastfold-1.png' alt="screenshot of Voyager web interface" width=800>
 
 
 

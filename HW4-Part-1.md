@@ -25,9 +25,9 @@ A popular option is [ColabFold](https://github.com/sokrypton/ColabFold), which p
 
 Several other web servers are also available. Protein structure prediction is a rapidly evolving field, and different research groups have developed methods that aim to improve prediction accuracy or reduce computational cost. For example, Meta developed ESMFold, a neural-network model for [predicting protein structures](https://esmatlas.com/). The method was published in [_Science_ in 2023](https://doi.org/10.1126/science.ade2574).
 
-More established methods also remain available. Before machine-learning approaches became widespread, I-TASSER was among the leading tools for protein structure prediction. The [I-TASSER web server](https://zhanggroup.org/I-TASSER/) therefore provides an opportunity to explore an approach developed before AlphaFold.
+Other established methods also remain available. Before machine-learning approaches became widespread, I-TASSER, for example, was among the leading tools for protein structure prediction. The [I-TASSER web server](https://zhanggroup.org/I-TASSER/) provides an opportunity to explore an approach developed before AlphaFold.
 
-To compare these tools, you will use several web servers to predict the structure of the following short protein sequence. The sequence is expected to form both alpha-helical and beta-sheet secondary structures.
+In the following, we will compare multiple protein structure prediction tools using several web servers. We will predict the structure of the following short amino acid sequence. The sequence is expected to form both alpha-helical and beta-sheet secondary structures.
 
 ```
 PIAQIHILEGRSDEQKETLIREVSEAISRSLDAPLTSVRVIITEMAKGHFGIGGELASK
@@ -36,9 +36,9 @@ PIAQIHILEGRSDEQKETLIREVSEAISRSLDAPLTSVRVIITEMAKGHFGIGGELASK
 Copy the amino acid sequence and submit it to each of the following web servers:
 
 - [ESMFold](https://esmatlas.com/resources?action=fold), developed by Meta
-- [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb), developed at Seoul National University in South Korea
+- [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb), developed at Seoul National University
 - [RoseTTAFold](https://neurosnap.ai/service/RoseTTAFold%20All-Atom), developed by the Baker laboratory at the University of Washington (requires a NeuroSnap account; limited free credits are available)
-- [D-I-TASSER](https://zhanggroup.org/D-I-TASSER/), developed by the Zhang group at the National University of Singapore (formerly at the University of Michigan)
+- [D-I-TASSER](https://zhanggroup.org/D-I-TASSER/), developed by the Zhang group at the National University of Singapore (formerly at University of Michigan)
 
 As you work through the web servers, consider the following questions:
 

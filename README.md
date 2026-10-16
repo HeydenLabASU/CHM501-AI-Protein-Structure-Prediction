@@ -152,7 +152,7 @@ GADITIILS
 
 The remaining process is the same as before. Once the prediction is completed, perform the same analysis as above for the single protein chain. Compare the 5 distinct predicted structures using the Jupyter notebook (or a copy of it) from before (with minor changes, see below).
 
-In section 2 of the notebook, you can specify if you want to compare the structure of a specific chain (`A` or `B`) or all chains at once. This makes a substantial difference: we already learned that predicting the structure of a single chain is comparably "easy", while the precition of the structure of a complex is a lot harder. The latter includes the relative orientation of the protein chains.
+In section 2 of the notebook, you can specify if you want to compare the structure of a specific chain (`A` or `B`) or all chains at once. This makes a substantial difference: we already learned that predicting the structure of a single chain is comparably "easy", while the prediction of the structure of a complex is a lot harder. The latter includes the relative orientation of the protein chains.
 
 Thus, you need to perform 3 distinct comparisons:
 

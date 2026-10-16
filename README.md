@@ -31,7 +31,12 @@ Other established methods also remain available. Before machine-learning approac
 In the following, we will compare multiple protein structure prediction tools using several web servers. We will predict the structure of the following short amino acid sequence. The sequence is expected to form both alpha-helical and beta-sheet secondary structures.
 
 ```
-PIAQIHILEGRSDEQKETLIREVSEAISRSLDAPLTSVRVIITEMAKGHFGIGGELASK
+PIAQIHILEG
+RSDEQKETLI
+REVSEAISRS
+LDAPLTSVRV
+IITEMAKGHF
+GIGGELASK
 ```
 
 Copy the amino acid sequence and submit it to each of the following web servers:
@@ -122,7 +127,27 @@ So far, we only predicted the structure of a single amino acid chain. The struct
 We will use a complex formed by 2 protein chains (named `A` and `B`). To do this, we separate the sequences by `:` and paste them into the FastFold (AlphaFold) Protein Folding workflow template:
 
 ```
-AQVINTFDGVADYLQTYHKLPDNYITKSEAQALGWVASKGNLADVAPGKSIGGDIFSNREGKLPGKSGRTWREADINYTSGFRNSDRILYSSDWLIYKTTDHYQTFTKIR:KKAVINGEQIRSISDLHQTLKKELALPEYYGENLDALWDALTGWVEYPLVLEWRQFEQSKQLTENGAESVLQVFREAKAEGADITIILS
+AQVINTFDGV
+ADYLQTYHKL
+PDNYITKSEA
+QALGWVASKG
+NLADVAPGKS
+IGGDIFSNRE
+GKLPGKSGRT
+WREADINYTS
+GFRNSDRILY
+SSDWLIYKTT
+DHYQTFTKIR
+:
+KKAVINGEQI
+RSISDLHQTL
+KKELALPEYY
+GENLDALWDA
+LTGWVEYPLV
+LEWRQFEQSK
+QLTENGAESV
+LQVFREAKAE
+GADITIILS
 ```
 
 The remaining process is the same as before. Once the prediction is completed, perform the same analysis as above for the single protein chain. Compare the 5 distinct predicted structures using the Jupyter notebook (or a copy of it) from before (with minor changes, see below).

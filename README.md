@@ -31,12 +31,7 @@ Other established methods also remain available. Before machine-learning approac
 In the following, we will compare multiple protein structure prediction tools using several web servers. We will predict the structure of the following short amino acid sequence. The sequence is expected to form both alpha-helical and beta-sheet secondary structures.
 
 ```
-PIAQIHILEG
-RSDEQKETLI
-REVSEAISRS
-LDAPLTSVRV
-IITEMAKGHF
-GIGGELASK
+PIAQIHILEGRSDEQKETLIREVSEAISRSLDAPLTSVRVIITEMAKGHFGIGGELASK
 ```
 
 Copy the amino acid sequence and submit it to each of the following web servers:

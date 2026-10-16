@@ -57,18 +57,18 @@ Among the webservers, D-I-TASSER may take a while to complete. Sign up with your
 
 There are multiple reasons not to use webservers. For example, you may be working in protein design and need to protect intellectual property (the amino acid sequence of your protein). Or you need to predict the structure of a larger set of sequences, which goes beyond what free webservers allow you to do.
 
-The AlphaFold models and parameters have been released to the public. 
+The AlphaFold models and parameters have been released to the public.
 
 - [AlphaFold2 on GitHub](https://github.com/google-deepmind/alphafold)
 - [AlphaFold3 on GitHub](https://github.com/google-deepmind/alphafold3)
 
 In principle, you could install AlphaFold2 or AlhpaFold3 on your own computer. However, as many ML/AI applications, these models work best on specialized hardware (GPUs or, as in our cse, HPUs), require the download of large datasets, additional tools for multiple sequence alignments (MSA), etc.
 
-However, ASU's Research Computing team has done this for us and AlphaFold3 is ready to run on the new Intel Gaudi2 system with a user friendly interface. Go to your [voyager page](voyager.rc.asu.edu) (requires VPN connection), go to 'Workflows & Apps', 'Catalog' and select the 'FastFold (AlphaFold) Protein Folding' workflow template (see red arrows in screenshot below).
+However, ASU's Research Computing team has done this for us and AlphaFold3 is ready to run on the new Intel Gaudi2 system with a user friendly interface. Go to your [voyager page](voyager.rc.asu.edu) (requires VPN connection), go to `Workflows & Apps`, `Catalog` and select the `FastFold (AlphaFold) Protein Folding` workflow template (see red arrows in screenshot below).
 
 <img src='files/screenshots/voyager_fastfold-1.png' alt="screenshot of Voyager web interface" width=800>
 
-In the flowchart, click on the 'alphafold' icon and paste your sequence in the corresponding field on the right (see red arrows in screenshot below).
+In the flowchart, click on the `alphafold` icon and paste your sequence in the corresponding field on the right (see red arrows in screenshot below).
 
 <img src='files/screenshots/voyager_fastfold-2.png' alt="screenshot of AlphaFold3 workslow" width=800>
 
@@ -76,11 +76,11 @@ Then click on the red 'Deploy' icon to start the prediction. This should take to
 
 <imd src='files/screenshots/voyager_fastfold-3.png' alt="status of AlphaFold prediction" width=800>
 
-After a few minutes, the status of the prediction (upper right field in red rectangle above) should change to 'Succeeded' to indicate that your prediction is complete. A click on the 'Results' icon will take you to a folder in your S3 cloud storage that contains the results of your AlphaFold predictions. You should find the results of your latest prediction in the folder with todays date.
+After a few minutes, the status of the prediction (upper right field in red rectangle above) should change to `Succeeded` to indicate that your prediction is complete. A click on the `Results` icon will take you to a folder in your S3 cloud storage that contains the results of your AlphaFold predictions. You should find the results of your latest prediction in the folder with todays date.
 
 <imd src='files/screenshots/voyager_fastfold-4.png' alt="AlphaFold prediction results" width=800>
 
-Open the folder and find the sub-directory 'query', which contains your results, specifically five predicted structures with file names 'ranked_1-5.pdb' (rank 1 is your best prediction; can you tell why it is better than rank 2-5?). Alternatively, download the entire folder to your computer and open the 'index.html' file to look at your results.
+Open the folder and find the sub-directory `query`, which contains your results, specifically five predicted structures with file names `ranked_1-5.pdb` (rank 1 is your best prediction; can you tell why it is better than rank 2-5?). Alternatively, download the entire folder to your computer and open the 'index.html' file to look at your results.
 
 ## Compare the structures obtained from different methods
 
@@ -117,17 +117,17 @@ The 'query' folder with your AlphaFold3 predictions contains 5 distinct structur
 
 ## Protein complexes ##
 
-So far, we only predicted the structure of a single amino acid chain. The structure prediction taks becomes substantially more difficult for protein complexes, i.e., structures formed by multiple protein chains. 
+So far, we only predicted the structure of a single amino acid chain. The structure prediction taks becomes substantially more difficult for protein complexes, i.e., structures formed by multiple protein chains.
 
-We will use a complex formed by 2 protein chains (named 'A' and 'B'). To do this, we separate the sequences by ':' and paste them into the FastFold (AlphaFold) Protein Folding workflow template:
+We will use a complex formed by 2 protein chains (named `A` and `B`). To do this, we separate the sequences by `:` and paste them into the FastFold (AlphaFold) Protein Folding workflow template:
 
-'''
+```
 AQVINTFDGVADYLQTYHKLPDNYITKSEAQALGWVASKGNLADVAPGKSIGGDIFSNREGKLPGKSGRTWREADINYTSGFRNSDRILYSSDWLIYKTTDHYQTFTKIR:KKAVINGEQIRSISDLHQTLKKELALPEYYGENLDALWDALTGWVEYPLVLEWRQFEQSKQLTENGAESVLQVFREAKAEGADITIILS
-'''
+```
 
 The remaining process is the same as before. Once the prediction is completed, perform the same analysis as above for the single protein chain. Compare the 5 distinct predicted structures using the Jupyter notebook (or a copy of it) from before (with minor changes, see below).
 
-In section 2 of the notebook, you can specify if you want to compare the structure of a specific chain ('A' or 'B') or all chains at once. This makes a substantial difference: we already learned that predicting the structure of a single chain is comparably "easy", while the precition of the structure of a complex is a lot harder. The latter includes the relative orientation of the protein chains.
+In section 2 of the notebook, you can specify if you want to compare the structure of a specific chain (`A` or `B`) or all chains at once. This makes a substantial difference: we already learned that predicting the structure of a single chain is comparably "easy", while the precition of the structure of a complex is a lot harder. The latter includes the relative orientation of the protein chains.
 
 Thus, you need to perform 3 distinct comparisons:
 
